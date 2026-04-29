@@ -31,9 +31,7 @@
         <div class="logo">4.<span>C</span></div>
         <ul class="nav-links">
             <li><a href="#home">Start</a></li>
-            <li><a href="#about">Kaj smo mi?</a></li>
-            <li><a href="#students">Škvadra</a></li>
-            <li><a href="#gallery">Brijice</a></li>
+            <li><a href="#incidents">Incidenti</a></li>
         </ul>
         <button id="toggleTheme" class="theme-btn">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
@@ -49,7 +47,7 @@
             <h1 class="glitch" data-text="4.C">4.C</h1>
             <h2 class="neon-text" data-text="Tehnička škola Ruđera Boškovića">Tehnička škola Ruđera Boškovića</h2>
             <p class="subtitle">Kaj ima? Dobrodošli u naš svijet. Najjači razred ikad, buraz.</p>
-            <a href="#about" class="btn-glow">Baci oko <i class="fas fa-arrow-down"></i></a>
+            <a href="#incidents" class="btn-glow">Baci oko <i class="fas fa-arrow-down"></i></a>
         </div>
         <div class="scroll-indicator">
             <div class="mouse">
@@ -63,98 +61,12 @@
         </div>
     </header>
 
-    <!-- About Section -->
-    <section id="about" class="section hidden">
+    <!-- Incidents Section -->
+    <section id="incidents" class="section hidden">
         <div class="container">
-            <h2 class="section-title">Kaj briješ, tko smo <span>mi?</span></h2>
-            <div class="about-grid">
-                <div class="about-card glass tilt-card">
-                    <i class="fas fa-fire card-icon"></i>
-                    <h3>Nabrijani</h3>
-                    <p>Uvijek gas do daske. Akcija non-stop, nema labavo. Mi smo srce škole, kužiš?</p>
-                </div>
-                <div class="about-card glass tilt-card">
-                    <i class="fas fa-lightbulb card-icon"></i>
-                    <h3>Spika i Kreativa</h3>
-                    <p>Od ludih ideja do najjačih preza. Granice ne postoje za nas, rođo.</p>
-                </div>
-                <div class="about-card glass tilt-card">
-                    <i class="fas fa-hand-fist card-icon"></i>
-                    <h3>Ekipica</h3>
-                    <p>Skupa kroz sva sranja, uvijek tu jedni za druge. Više od razreda - braća i sestre.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Students/Team Section -->
-    <section id="students" class="section hidden">
-        <div class="container">
-            <h2 class="section-title">Naša <span>Škvadra</span></h2>
-            <div class="filter-btns">
-                <button class="filter-btn active" data-filter="all">Svi</button>
-                <button class="filter-btn" data-filter="girls">Trebe</button>
-                <button class="filter-btn" data-filter="boys">Likovi</button>
-            </div>
-            <div class="students-grid" id="students-container">
-                <!-- Students will be injected here by JS -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Stats/Memories Section -->
-    <section id="stats" class="section glass-section hidden">
-        <div class="container">
-            <div class="stats-container">
-                <div class="stat-box">
-                    <span class="stat-number" data-target="4">0</span>
-                    <span class="stat-text">Godine Skupa</span>
-                </div>
-                <div class="stat-box">
-                    <span class="stat-number" data-target="24">0</span>
-                    <span class="stat-text">Faca</span>
-                </div>
-                <div class="stat-box">
-                    <span class="stat-number" data-target="1000">0</span>
-                    <span class="stat-text">Bolesnih provala</span>
-                </div>
-                <div class="stat-box">
-                    <span class="stat-number" data-target="1">0</span>
-                    <span class="stat-text">Raska legenda</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Gallery Section -->
-    <section id="gallery" class="section hidden">
-        <div class="container">
-            <h2 class="section-title">Naše <span>Brijice</span></h2>
-            <div class="gallery-container">
-                <div class="gallery-item glass tilt-card">
-                    <div class="image-placeholder gradient-1">
-                        <i class="fas fa-camera"></i>
-                        <span>Izleti</span>
-                    </div>
-                </div>
-                <div class="gallery-item glass tilt-card">
-                    <div class="image-placeholder gradient-2">
-                        <i class="fas fa-graduation-cap"></i>
-                        <span>Školska faza</span>
-                    </div>
-                </div>
-                <div class="gallery-item glass tilt-card">
-                    <div class="image-placeholder gradient-3">
-                        <i class="fas fa-laugh"></i>
-                        <span>Pod odmorom</span>
-                    </div>
-                </div>
-                <div class="gallery-item glass tilt-card">
-                    <div class="image-placeholder gradient-4">
-                        <i class="fas fa-music"></i>
-                        <span>Tulumica</span>
-                    </div>
-                </div>
+            <h2 class="section-title">Naši <span>Incidenti</span></h2>
+            <div class="incidents-grid" id="incidents-container">
+                <!-- Incidents will be injected here by JS -->
             </div>
         </div>
     </section>

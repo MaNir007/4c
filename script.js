@@ -1,13 +1,11 @@
-// Data for students with Zagreb slang
-const studentsData = [
-    { name: "Luka H.", role: "Glavni haker", quote: "Palo mi je na mom kompu...", gender: "boys", img: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=400&h=500&auto=format&fit=crop" },
-    { name: "Ana M.", role: "Razredna poglavica", quote: "Daj malo tišine tamo odozada!", gender: "girls", img: "https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=400&h=500&auto=format&fit=crop" },
-    { name: "Marko P.", role: "Dežurni klaun", quote: "Raska, jel mogu na wc?", gender: "boys", img: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=400&h=500&auto=format&fit=crop" },
-    { name: "Iva K.", role: "Štreberica", quote: "A kaj smo imali za domaći?", gender: "girls", img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=400&h=500&auto=format&fit=crop" },
-    { name: "Ivan B.", role: "Hakler", quote: "Idemo na hakl poslije nastave?", gender: "boys", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=400&h=500&auto=format&fit=crop" },
-    { name: "Petra J.", role: "Fantom", quote: "Zakasnila sam, ZET brije po svom...", gender: "girls", img: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=400&h=500&auto=format&fit=crop" },
-    { name: "Karlo D.", role: "DJ Špica", quote: "Daj mi AUX da pustim bengere.", gender: "boys", img: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=400&h=500&auto=format&fit=crop" },
-    { name: "Maja T.", role: "Artistica", quote: "Crtam grafite po klupi.", gender: "girls", img: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?q=80&w=400&h=500&auto=format&fit=crop" },
+// Data for incidents with Zagreb slang
+const incidentsData = [
+    { title: "Zapaljen Koš", desc: "Slučajno pao upaljač... vatrogasci bili na speed dialu.", date: "Prosinac 2024", icon: "fa-fire" },
+    { title: "Zaključana Raska", desc: "Zaboravili smo da je unutra na velikom odmoru. Sori raska!", date: "Rujan 2023", icon: "fa-key" },
+    { title: "Masovno Bježanje", desc: "Kolektivno preseljenje s fizike u obližnji birc na Vukovarskoj.", date: "Svibanj 2025", icon: "fa-person-running" },
+    { title: "Eksplozija Labos", desc: "Malo smo krivo spojili žice, pola škole ostalo bez struje.", date: "Ožujak 2025", icon: "fa-bomb" },
+    { title: "Pad Projektora", desc: "Netko je previše zalupio vratima, projektor rekao laku noć.", date: "Studeni 2024", icon: "fa-desktop" },
+    { title: "Nestanak Struje", desc: "Glavna sklopka misteriozno iskočila baš pred test iz matke.", date: "Siječanj 2026", icon: "fa-bolt" }
 ];
 
 window.addEventListener("load", () => {
@@ -44,7 +42,6 @@ document.addEventListener('DOMContentLoaded', () => {
         
         if (body.classList.contains("light")) {
             toggleBtn.innerHTML = moonIcon;
-            // Repaint canvas with light theme colors
             particleColor = 'rgba(255, 117, 195, 0.5)';
             lineColor = '255, 117, 195';
         } else {
@@ -54,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Custom Cursor with spring physics emulation
+    // Custom Cursor
     const cursor = document.querySelector('.cursor');
     const cursorFollower = document.querySelector('.cursor-follower');
     let mouseX = window.innerWidth/2, mouseY = window.innerHeight/2;
@@ -67,7 +64,6 @@ document.addEventListener('DOMContentLoaded', () => {
             cursor.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
         });
 
-        // Use requestAnimationFrame for smoother follower lag
         const updateFollower = () => {
             followerX += (mouseX - followerX) * 0.15;
             followerY += (mouseY - followerY) * 0.15;
@@ -77,13 +73,13 @@ document.addEventListener('DOMContentLoaded', () => {
         updateFollower();
 
         const addHoverEffects = () => {
-            const links = document.querySelectorAll('a, button, .gallery-item, .student-card, .theme-btn');
+            const links = document.querySelectorAll('a, button, .theme-btn, .incident-card');
             links.forEach(link => {
                 link.addEventListener('mouseenter', () => cursorFollower.classList.add('hovering'));
                 link.addEventListener('mouseleave', () => cursorFollower.classList.remove('hovering'));
             });
         };
-        addHoverEffects();
+        setTimeout(addHoverEffects, 1000); // init after render
     }
 
     // Navigation Scroll Effect
@@ -128,44 +124,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Number Counter Animation via IntersectionObserver
-    const observerOptions = { threshold: 0.5 };
-    let numbersAnimated = false;
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting && !numbersAnimated) {
-                const stats = document.querySelectorAll('.stat-number');
-                stats.forEach(stat => {
-                    const target = +stat.getAttribute('data-target');
-                    if (typeof gsap !== 'undefined') {
-                        gsap.to(stat, {
-                            innerHTML: target,
-                            duration: 2,
-                            snap: { innerHTML: 1 },
-                            onUpdate: function() {
-                                stat.innerHTML = Math.ceil(this.targets()[0].innerHTML) + (target > 100 ? '+' : '');
-                            }
-                        });
-                    } else {
-                        stat.innerHTML = target + (target > 100 ? '+' : '');
-                    }
-                });
-                numbersAnimated = true;
-            }
-        });
-    }, observerOptions);
-
-    const statsSection = document.getElementById('stats');
-    if(statsSection) observer.observe(statsSection);
-
-    // 3D Tilt Effect on Cards (Advanced JS interaction)
+    // 3D Tilt Effect on Cards
     const initTilt = () => {
-        const tiltCards = document.querySelectorAll('.tilt-card, .student-card');
+        const tiltCards = document.querySelectorAll('.tilt-card, .incident-card');
         
         tiltCards.forEach(card => {
             card.addEventListener('mousemove', (e) => {
-                if (window.innerWidth <= 768) return; // Disable tilt on mobile
+                if (window.innerWidth <= 768) return; 
                 const rect = card.getBoundingClientRect();
                 const x = e.clientX - rect.left;
                 const y = e.clientY - rect.top;
@@ -187,78 +152,52 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // Populate Students with GSAP Stagger
-    const studentsContainer = document.getElementById('students-container');
+    // Populate Incidents
+    const incidentsContainer = document.getElementById('incidents-container');
     
-    function renderStudents(filter = 'all') {
-        const updateDOM = () => {
-            studentsContainer.innerHTML = '';
+    function renderIncidents() {
+        incidentsContainer.innerHTML = '';
+        
+        incidentsData.forEach((incident, index) => {
+            const card = document.createElement('div');
+            card.className = 'incident-card glass tilt-card';
             
-            const filtered = filter === 'all' 
-                ? studentsData 
-                : studentsData.filter(s => s.gender === filter);
-                
-            filtered.forEach((student, index) => {
-                const card = document.createElement('div');
-                card.className = 'student-card glass';
-                
-                card.innerHTML = `
-                    <img src="${student.img}" alt="${student.name}" class="student-card-img" onerror="this.src='https://via.placeholder.com/400x500/111/ff75c3?text=${encodeURIComponent(student.name)}'">
-                    <div class="student-info">
-                        <h3 class="student-name">${student.name}</h3>
-                        <p class="student-role">${student.role}</p>
-                        <p class="student-quote">"${student.quote}"</p>
-                    </div>
-                `;
-                studentsContainer.appendChild(card);
-            });
+            card.innerHTML = `
+                <div class="incident-icon-wrapper">
+                    <i class="fas ${incident.icon} incident-icon"></i>
+                </div>
+                <div class="incident-info">
+                    <span class="incident-date">${incident.date}</span>
+                    <h3 class="incident-title">${incident.title}</h3>
+                    <p class="incident-desc">${incident.desc}</p>
+                </div>
+            `;
+            incidentsContainer.appendChild(card);
+        });
 
-            // Re-init tilt and hover effects
-            initTilt();
-            if(window.innerWidth > 768) {
-                const newCards = document.querySelectorAll('.student-card');
-                newCards.forEach(card => {
-                    card.addEventListener('mouseenter', () => cursorFollower.classList.add('hovering'));
-                    card.addEventListener('mouseleave', () => cursorFollower.classList.remove('hovering'));
-                });
-            }
-
-            // Fade in new
-            if (typeof gsap !== 'undefined') {
-                gsap.fromTo('.student-card', 
-                    { opacity: 0, y: 30 },
-                    { opacity: 1, y: 0, duration: 0.5, stagger: 0.1, ease: "back.out(1.7)" }
-                );
-            }
-        };
-
-        if (typeof gsap !== 'undefined' && studentsContainer.children.length > 0) {
-            // Fade out existing
-            gsap.to('.student-card', {
-                opacity: 0,
-                y: 20,
-                duration: 0.3,
-                onComplete: updateDOM
-            });
-        } else {
-            updateDOM();
+        initTilt();
+        
+        if (typeof gsap !== 'undefined') {
+            gsap.fromTo('.incident-card', 
+                { opacity: 0, y: 30 },
+                { 
+                    opacity: 1, 
+                    y: 0, 
+                    duration: 0.6, 
+                    stagger: 0.15, 
+                    ease: "back.out(1.7)",
+                    scrollTrigger: {
+                        trigger: '#incidents',
+                        start: "top 70%"
+                    }
+                }
+            );
         }
     }
 
-    // Initial render
-    renderStudents();
+    renderIncidents();
 
-    // Filter Buttons logic
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    filterBtns.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            filterBtns.forEach(b => b.classList.remove('active'));
-            e.target.classList.add('active');
-            renderStudents(e.target.getAttribute('data-filter'));
-        });
-    });
-
-    // Interactive Background Canvas (Particles with mouse attraction)
+    // Interactive Background Canvas
     const canvas = document.getElementById('bg-canvas');
     const ctx = canvas.getContext('2d');
     let width, height;
@@ -285,7 +224,6 @@ document.addEventListener('DOMContentLoaded', () => {
             this.x += this.speedX;
             this.y += this.speedY;
             
-            // Mouse interaction - particles are attracted
             if(window.innerWidth > 768) {
                 let dx = mouseX - this.x;
                 let dy = mouseY - this.y;
@@ -298,7 +236,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 let directionY = forceDirectionY * force * this.density;
                 
                 if (distance < maxDistance) {
-                    this.x += directionX * 0.05; // attract slowly
+                    this.x += directionX * 0.05; 
                     this.y += directionY * 0.05;
                 }
             }
@@ -358,6 +296,4 @@ document.addEventListener('DOMContentLoaded', () => {
         initCanvas();
         createParticles();
     });
-
-    initTilt(); // init tilt for static elements
 });
