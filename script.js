@@ -1,6 +1,6 @@
 // Data for incidents with Zagreb slang
 const incidentsData = [
-    { title: "Zapaljen Koš", desc: "Slučajno pao upaljač... vatrogasci bili na speed dialu.", date: "Prosinac 2024", icon: "fa-fire" },
+    { title: "yyyy", desc: "xxx", date: "Prosinac 2024", icon: "fa-fire" },
     { title: "Zaključana Raska", desc: "Zaboravili smo da je unutra na velikom odmoru. Sori raska!", date: "Rujan 2023", icon: "fa-key" },
     { title: "Masovno Bježanje", desc: "Kolektivno preseljenje s fizike u obližnji birc na Vukovarskoj.", date: "Svibanj 2025", icon: "fa-person-running" },
     { title: "Eksplozija Labos", desc: "Malo smo krivo spojili žice, pola škole ostalo bez struje.", date: "Ožujak 2025", icon: "fa-bomb" },
@@ -168,7 +168,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
                 <div class="incident-info">
                     <span class="incident-date">${incident.date}</span>
-                    <h3 class="incident-title">${incident.title}</h3>
+                    <h3 class="incident-title neon-text">${incident.title}</h3>
                     <p class="incident-desc">${incident.desc}</p>
                 </div>
             `;
